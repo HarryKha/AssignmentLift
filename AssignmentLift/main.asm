@@ -83,7 +83,8 @@ Button_pressed:
 	.byte 1
 LED_State:
 	.byte 1
-
+Array_Size: ;size of array containing floors
+	.byte 1
 
 .cseg
 .org 0x0000
@@ -123,10 +124,9 @@ Check_Emergency:
 
 	cpi r16, 0 ;check if emergency mode has been activated
 		brne Emergency_Activated
-	push temp1
 	ldi temp1, 0
-	out PORTA, temp1
-	pop temp1
+	sts LED_State, temp1
+	cbi PORTA, 1
 
 Check_Emergency_End:
 	mov r24, r16
@@ -144,14 +144,14 @@ Emergency_Activated:
 ;=============================================
 ;	insert code for FLASHING LED here
 	lds temp1, LED_State
-	cpi temp1, 3
+	cpi temp1, 1
 		breq ledon
-	out PORTA, temp1
-	ldi temp1, 3
+	cbi PORTA, 1
+	ldi temp1, 1
 	sts LED_State, temp1
 	rjmp Emergency_Activated_continue
 ledon:
-	out PORTA, temp1
+	sbi PORTA, 1
 	ldi temp1, 0
 	sts LED_State, temp1
 	rjmp Emergency_Activated_continue
@@ -326,19 +326,22 @@ TurnOn1:
 FiveSecondEnd:
 	ldi xl, low(vartab)
 	ldi xh, high(vartab)
-	movup:
+	movup: ;deleting first number in array
 	ld r17, x+
 	ld r18, x
 	cpi r17, 0
 	breq finmovup ;r17 = r18 because no repeating element therefore
 	;r17 and r18 must contain 0 (buffer 0)
-	st -z, r18 ;overwrite previous number
+	st -x, r18 ;overwrite previous number
 	ld r17, x+
 	jmp movup
 	finmovup:
+	lds r21, Array_Size ;decrement array size
+	dec r21
+	sts Array_Size, r21
 	ldi xl, low(vartab)
 	ldi xh, high(vartab)
-	ld r21, x
+	ld r21, x ;load next floor
 	sts NextFloor, r21
 	clear FiveSecondCounter
 	rjmp endOVF0
@@ -515,8 +518,10 @@ main:
 
 	rcall insert_request ; call subroutine
 	mov r17, r21 ;move returned number back to r17
+	sts Array_Size, r21
 	jmp repeat
 	;*******************************************************************
+	
 	rjmp start2  ;end of main function
 
 insert_request:
@@ -712,7 +717,7 @@ start:
 	ldi temp1, 0
 	sts Emergency_Mode, temp1
 
-	ldi temp1, 3
+	ldi temp1, 1
 	sts LED_State, temp1
 
 	clr r23
@@ -849,6 +854,47 @@ convert:
 	add temp1, row
 	add temp1, col ; temp1 = row*3 + col
 	subi temp1, -1 ; Add the value of character ?E?E
+	;********************************************** add pressed number into array
+	push r17
+	push r18
+	push r19
+	push r21
+	push r22
+	push r23
+	push r24
+	lds r17, Array_Size
+	lds r19, FloorNumber ;loading Floor number and direction into the stack 
+	lds r18, Direction
+	in yl, SPL ;4bytes to store local variables
+	in yh, SPH ;assume variable is 1 byte
+	adiw y, 4
+	out SPH, yh ;adjust stack pointer to poin to new stack top
+	out SPL, yl
+	std y+1, temp1 ;store initial parameters
+	std y+2, r17 ;arraysize
+	std y+3, r19
+	std y+4, r18
+
+	;prepare parameters for function call
+	ldd r21, y+1 ; r21 holds the insert number parameter
+	ldd r22, y+2 ; r22 holds arraysize parameter
+	ldd r23, y+3 ; r23 holds current floor parameter
+	ldd r24, y+4 ; r24 holds lift direction parameter
+
+	rcall insert_request ; call subroutine
+	sts Array_Size, r21 ;move returned number back to arraysize
+	in yl, SPL
+	in yh, SPH
+	sbiw y, 4
+	out SPH, yh
+	out SPL, yl
+	pop r24
+	pop r23
+	pop r22
+	pop r21
+	pop r19
+	pop r18
+	pop r17
 	jmp convert_end
 letters:
 	ldi temp1, 'A'
