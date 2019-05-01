@@ -83,7 +83,8 @@ Button_pressed:
 	.byte 1
 LED_State:
 	.byte 1
-
+Array_Size: ;size of array containing floors
+	.byte 1
 
 .cseg
 .org 0x0000
@@ -326,7 +327,7 @@ TurnOn1:
 FiveSecondEnd:
 	ldi xl, low(vartab)
 	ldi xh, high(vartab)
-	movup:
+	movup: ;deleting first number in array
 	ld r17, x+
 	ld r18, x
 	cpi r17, 0
@@ -336,9 +337,12 @@ FiveSecondEnd:
 	ld r17, x+
 	jmp movup
 	finmovup:
+	lds r21, Array_Size ;decrement array size
+	dec r21
+	sts Array_Size, r21
 	ldi xl, low(vartab)
 	ldi xh, high(vartab)
-	ld r21, x
+	ld r21, x ;load next floor
 	sts NextFloor, r21
 	clear FiveSecondCounter
 	rjmp endOVF0
@@ -464,10 +468,10 @@ main:
 	clr r17 ;arraysize
 	ldi zl, low(number<<1)
 	ldi zh, high(number<<1)
-	;ldi yl, low(RAMEND-4) ;4bytes to store local variables
-	;ldi yh, high(RAMEND-4) ;assume variable is 1 byte
-	;out SPH, yh ;adjust stack pointer to poin to new stack top
-	;out SPL, yl
+	ldi yl, low(RAMEND-4) ;4bytes to store local variables
+	ldi yh, high(RAMEND-4) ;assume variable is 1 byte
+	out SPH, yh ;adjust stack pointer to poin to new stack top
+	out SPL, yl
 
 	ldi r19, 8
 	ldi r18, 0 ;0 is down, 1 is up
@@ -515,8 +519,10 @@ main:
 
 	rcall insert_request ; call subroutine
 	mov r17, r21 ;move returned number back to r17
+	sts Array_Size, r21
 	jmp repeat
 	;*******************************************************************
+	
 	rjmp start2  ;end of main function
 
 insert_request:
@@ -849,6 +855,47 @@ convert:
 	add temp1, row
 	add temp1, col ; temp1 = row*3 + col
 	subi temp1, -1 ; Add the value of character ?E?E
+	;********************************************** add pressed number into array
+	push r17
+	push r18
+	push r19
+	push r21
+	push r22
+	push r23
+	push r24
+	lds r17, Array_Size
+	lds r19, FloorNumber ;loading Floor number and direction into the stack 
+	lds r18, Direction
+	in yl, SPL ;4bytes to store local variables
+	in yh, SPH ;assume variable is 1 byte
+	adiw y, 4
+	out SPH, yh ;adjust stack pointer to poin to new stack top
+	out SPL, yl
+	std y+1, temp1 ;store initial parameters
+	std y+2, r17 ;arraysize
+	std y+3, r19
+	std y+4, r18
+
+	;prepare parameters for function call
+	ldd r21, y+1 ; r21 holds the insert number parameter
+	ldd r22, y+2 ; r22 holds arraysize parameter
+	ldd r23, y+3 ; r23 holds current floor parameter
+	ldd r24, y+4 ; r24 holds lift direction parameter
+
+	rcall insert_request ; call subroutine
+	sts Array_Size, r21 ;move returned number back to arraysize
+	in yl, SPL
+	in yh, SPH
+	sbiw y, 4
+	out SPH, yh
+	out SPL, yl
+	pop r24
+	pop r23
+	pop r22
+	pop r21
+	pop r19
+	pop r18
+	pop r17
 	jmp convert_end
 letters:
 	ldi temp1, 'A'
