@@ -867,29 +867,14 @@ convert:
 	lds r17, Array_Size
 	lds r19, FloorNumber ;loading Floor number and direction into the stack 
 	lds r18, Direction
-	in yl, SPL ;4bytes to store local variables
-	in yh, SPH ;assume variable is 1 byte
-	sbiw y, 4
-	out SPH, yh ;adjust stack pointer to poin to new stack top
-	out SPL, yl
-	std y+1, temp1 ;store initial parameters
-	std y+2, r17 ;arraysize
-	std y+3, r19
-	std y+4, r18
-
 	;prepare parameters for function call
-	ldd r21, y+1 ; r21 holds the insert number parameter
-	ldd r22, y+2 ; r22 holds arraysize parameter
-	ldd r23, y+3 ; r23 holds current floor parameter
-	ldd r24, y+4 ; r24 holds lift direction parameter
+	mov r21, temp1 ; r21 holds the insert number parameter
+	mov r22, r17 ; r22 holds arraysize parameter
+	mov r23, r19 ; r23 holds current floor parameter
+	mov r24, r18 ; r24 holds lift direction parameter
 
 	rcall insert_request ; call subroutine
 	sts Array_Size, r21 ;move returned number back to arraysize
-	in yl, SPL
-	in yh, SPH
-	adiw y, 4
-	out SPH, yh
-	out SPL, yl
 	pop r24
 	pop r23
 	pop r22
