@@ -85,6 +85,9 @@ LED_State:
 	.byte 1
 Array_Size: ;size of array containing floors
 	.byte 1
+Debounce_Timer:
+	.byte 2
+
 
 .cseg
 .org 0x0000
@@ -97,7 +100,7 @@ Array_Size: ;size of array containing floors
 .org OVF0addr
 	jmp OVF0address
 
-	number: .db 4,2,6,8,10,6,2,8,0,0
+	number: .db 4,6,3,8,10,6,7,8,9,0,0
 	insertflo: .db 0,0
 
 
@@ -742,6 +745,7 @@ start:
 	clear Emergency_Direction
 	clear Button_pressed
 	clear LED_State
+	clear Debounce_Timer
 
 	ldi temp1, 1
 	sts Emergency_Floor, temp1
@@ -887,31 +891,6 @@ convert:
 	add temp1, col ; temp1 = row*3 + col
 	subi temp1, -1 ; Add the value of character ?E?E
 	;********************************************** add pressed number into array
-	push r17
-	push r18
-	push r19
-	push r21
-	push r22
-	push r23
-	push r24
-	lds r17, Array_Size
-	lds r19, NextFloor ;loading Floor number and direction into the stack 
-	lds r18, Direction
-	;prepare parameters for function call
-	mov r21, temp1 ; r21 holds the insert number parameter
-	mov r22, r17 ; r22 holds arraysize parameter
-	mov r23, r19 ; r23 holds current floor parameter
-	mov r24, r18 ; r24 holds lift direction parameter
-
-	rcall insert_request ; call subroutine
-	sts Array_Size, r21 ;move returned number back to arraysize
-	pop r24
-	pop r23
-	pop r22
-	pop r21
-	pop r19
-	pop r18
-	pop r17
 	jmp convert_end
 letters:
 	ldi temp1, 'A'
@@ -1022,61 +1001,17 @@ sleep_5ms:
 	rcall sleep_1ms
 	ret
 EXT_INT0:
-	push r20 ; save register
-	in r20, SREG ; save SREG
-	lds r24, FloorNumber
-	lds r25, Debounce
-	inc r25
-	cpi r25, 1
-		brlo doNothing
-	clr r25
-	sts Debounce, r25
-	cpi r24, 0
-		breq CloseDoor
-	cp r24, r21 ;r21 is floor numbers in the array
-		breq CloseDoor
-	out SREG, r20
-	pop r20 ; restore register
+	ldi r24, 4
+	sts FiveSecondCounter, r24
 	reti
 EXT_INT1:
-	push r20 ; save register
-	push r21
-	in r20, SREG ; save SREG
-	lds r24, FloorNumber
-	clr r25 ;set up delay, 255 cycles can make it longer by using 2 bits
-DEBOUNCE_BUTTON:
-	inc r25
-	cpi r25, 255
-	brlo DEBOUNCE_BUTTON
-	in r25, PINB ;get pin state
-	cpi r25, 4 ;if pin is pressed down (ie 1 then rising edge)
-	breq PRESS_DOWN
-	cpi r24, 0
-		breq HoldDoor
-	cp r24, r21 ;r21 is floor numbers in the array
-		breq HoldDoor
-PRESS_DOWN:
-	out SREG, r20
-	pop r21
-	pop r20 ; restore register
-	reti
-doNothing:
-	out SREG, r20
-	pop r21
-	pop r20 ; restore register
-	reti
-CloseDoor:
-	ldi r24, 5
-	sts FiveSecondCounter, r24
-	out SREG, r20
-	pop r21
-	pop r20 ; restore register
-	reti
-HoldDoor:
 	lds r24, FiveSecondCounter
-	subi r24, 3
+	cpi r24, 4
+		brge ReopenDoors
+	ldi r24, 1
 	sts FiveSecondCounter, r24
-	out SREG, r20
-	pop r21
-	pop r20
+	reti
+ReopenDoors:
+	clr r24
+	sts FiveSecondCounter, r24
 	reti

@@ -43,6 +43,8 @@ SecondCounter:
 	.byte 2
 QuarterRevolution:
 	.byte 2
+Debounce_Timer:
+	.byte 2
 
 .cseg
 .org 0x0000
@@ -323,6 +325,19 @@ EXT_INT0:
 EXT_INT1:
 	push r24
 	push r25
+	lds r24, Debounce_Timer
+	lds r25, Debounce_Timer + 1
+	lds temp1, TempCounter
+	lds temp2, TempCounter + 1
+
+	sub temp1, r24 ;subtract tempcounter with debounce timer
+	sbc temp2, r25
+
+	cpi temp1, low(1000)
+	ldi r22, high(1000)
+	cpc temp2, r22
+		brlo ignoreinput
+
 	lds r24, QuarterRevolution
 	lds r25, QuarterRevolution + 1
 	adiw r25:r24, 1
@@ -332,6 +347,12 @@ EXT_INT1:
 
 	cbi PORTA, 1
 
+	pop r25
+	pop r24
+	reti
+ignoreinput:
+	sts Debounce_Timer, r24
+	sts Debounce_Timer, r25
 	pop r25
 	pop r24
 	reti
