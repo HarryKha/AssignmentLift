@@ -312,7 +312,7 @@ FiveSecondPause:
 		breq FiveSecondEnd
 	rjmp FiveSecondPauseContinue
 OpenDoor:
-	ldi temp1, 0xFF
+	ldi temp1, 0x6A
 	sts OCR3BL, temp1
 	rjmp FiveSecondPauseContinue
 wait:
@@ -320,7 +320,7 @@ wait:
 	sts OCR3BL, temp1
 	rjmp FiveSecondPauseContinue
 CloseDoors:	
-	ldi temp1, 0x4A
+	ldi temp1, 0x2A
 	sts OCR3BL, temp1
 	rjmp FiveSecondPauseContinue
 FiveSecondPauseContinue:
