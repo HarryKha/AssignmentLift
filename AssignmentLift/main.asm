@@ -867,7 +867,7 @@ convert:
 	lds r18, Direction
 	in yl, SPL ;4bytes to store local variables
 	in yh, SPH ;assume variable is 1 byte
-	adiw y, 4
+	sbiw y, 4
 	out SPH, yh ;adjust stack pointer to poin to new stack top
 	out SPL, yl
 	std y+1, temp1 ;store initial parameters
@@ -885,7 +885,7 @@ convert:
 	sts Array_Size, r21 ;move returned number back to arraysize
 	in yl, SPL
 	in yh, SPH
-	sbiw y, 4
+	adiw y, 4
 	out SPH, yh
 	out SPL, yl
 	pop r24
@@ -913,11 +913,6 @@ star:
 zero:
 	ldi temp1, 0 ; Set to zero
 convert_end:
-
-;=============================================
-;	Need a debounce for '*' here
-;=============================================
-
 	sts Button_pressed, temp1
 	cpi temp1, '*'
 		breq toggleEmergency
