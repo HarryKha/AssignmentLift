@@ -458,6 +458,12 @@ display10:
 updateFloor: ;updates the floor number and direction
 	push YL
 	push YH
+	lds r16, Emergency_Mode
+	cpi r16, 0
+	breq Not_emergency
+	ldi r17, 1 ;next floor in emergency is 1
+	rjmp requestexist
+Not_emergency:
 	lds r17, vartab
 	cpi r17, 0 ;empty request floor therefore do not move
 	brne requestexist
@@ -605,6 +611,7 @@ insert_request:
 	cpi r18, 0 ;check lift movement
 	breq dwn
 	ldi r16, 255
+	rjmp dwn
 start2:
 	rjmp start
 
