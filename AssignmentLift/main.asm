@@ -608,6 +608,7 @@ insert_request:
 	cpi r18, 0 ;check lift movement
 	breq dwn
 	ldi r16, 255
+	rjmp dwn
 start2:
 	rjmp start
 
