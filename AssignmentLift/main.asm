@@ -507,16 +507,11 @@ main:
 	cpi r16, 0 ;compares the insert number to 0 and if zero, end of array
 	breq begin
 
-	std y+1, r16 ;store initial parameters
-	std y+2, r17 ;arraysize
-	std y+3, r19
-	std y+4, r18
-
 	;prepare parameters for function call
-	ldd r21, y+1 ; r21 holds the insert number parameter
-	ldd r22, y+2 ; r22 holds arraysize parameter
-	ldd r23, y+3 ; r23 holds current floor parameter
-	ldd r24, y+4 ; r24 holds lift direction parameter
+	mov r21, r16 ; r21 holds the insert number parameter
+	mov r22, r17 ; r22 holds arraysize parameter
+	mov r23, r19 ; r23 holds current floor parameter
+	mov r24, r18 ; r24 holds lift direction parameter
 
 	rcall insert_request ; call subroutine
 	mov r17, r21 ;move returned number back to arraysize
@@ -532,16 +527,11 @@ main:
 	lpm r16, z+ ; floor to be inserted
 	cpi r16, 0
 		breq start2
-	std y+1, r16 ;store initial parameters
-	std y+2, r17 ;arraysize
-	std y+3, r19
-	std y+4, r18
-
 	;prepare parameters for function call
-	ldd r21, y+1 ; r21 holds the insert number parameter
-	ldd r22, y+2 ; r22 holds arraysize parameter
-	ldd r23, y+3 ; r23 holds current floor parameter
-	ldd r24, y+4 ; r24 holds lift direction parameter
+	mov r21, r16 ; r21 holds the insert number parameter
+	mov r22, r17 ; r22 holds arraysize parameter
+	mov r23, r19 ; r23 holds current floor parameter
+	mov r24, r18 ; r24 holds lift direction parameter
 
 	rcall insert_request ; call subroutine
 	mov r17, r21 ;move returned number back to r17
