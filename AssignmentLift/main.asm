@@ -456,8 +456,8 @@ updateFloor: ;updates the floor number and direction
 	push YL
 	push YH
 	lds r16, Emergency_Mode
-	cpi r16, 1
-	brne Not_emergency
+	cpi r16, 0
+	breq Not_emergency
 	ldi r17, 1 ;next floor in emergency is 1
 	rjmp requestexist
 Not_emergency:
