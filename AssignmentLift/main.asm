@@ -455,6 +455,25 @@ display10:
 updateFloor: ;updates the floor number and direction
 	push YL
 	push YH
+	push zl
+	push zh
+	ldi zl, low(vartab);compare current floor to next requested floor
+	ldi zh, high(vartab)
+	ld r17, z
+	cpi r17, 0 ;empty request floor therefore do not move
+	brne requestexist
+	in YL, SPL
+	in YH, SPH
+	sbiw Y, 2
+	out SPL, YL
+	out SPH, YH
+	std Y+1, r24
+	std Y+2, r25
+	ldd r16, Y+1 ;Floor number
+	ldd r17, Y+2 ;Direction
+	rjmp updateFloor_end
+requestexist:
+
 	in YL, SPL
 	in YH, SPH
 	sbiw Y, 2
@@ -464,10 +483,10 @@ updateFloor: ;updates the floor number and direction
 	std Y+1, r24
 	std Y+2, r25
 	ldd r16, Y+1 ;Floor number
-	ldd r17, Y+2 ;Direction
-	cpi r17, 1 ;compare direction, 1 = going up, 0 = going down
-		breq goingup
-	rjmp goingdown
+	cp r17, r16 ; compare next floor to the current floor
+	brlo goingdown ;next floor lower than current floor
+	rjmp goingup
+
 goingup:
 	cpi r16, 10 ;has it reached floor 10 yet
 		breq goingdown
