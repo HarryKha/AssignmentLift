@@ -333,7 +333,7 @@ FiveSecondEnd:
 	cpi r17, 0
 	breq finmovup ;r17 = r18 because no repeating element therefore
 	;r17 and r18 must contain 0 (buffer 0)
-	st -z, r18 ;overwrite previous number
+	st -x, r18 ;overwrite previous number
 	ld r17, x+
 	jmp movup
 	finmovup:
@@ -439,6 +439,7 @@ updateFloor: ;updates the floor number and direction
 	std Y+2, r25
 	ldd r16, Y+1 ;Floor number
 	ldd r17, Y+2 ;Direction
+
 	cpi r17, 1 ;compare direction, 1 = going up, 0 = going down
 		breq goingup
 	rjmp goingdown
@@ -468,10 +469,10 @@ main:
 	clr r17 ;arraysize
 	ldi zl, low(number<<1)
 	ldi zh, high(number<<1)
-	ldi yl, low(RAMEND-4) ;4bytes to store local variables
-	ldi yh, high(RAMEND-4) ;assume variable is 1 byte
-	out SPH, yh ;adjust stack pointer to poin to new stack top
-	out SPL, yl
+	;ldi yl, low(RAMEND-4) ;4bytes to store local variables
+	;ldi yh, high(RAMEND-4) ;assume variable is 1 byte
+	;out SPH, yh ;adjust stack pointer to poin to new stack top
+	;out SPL, yl
 
 	ldi r19, 8
 	ldi r18, 0 ;0 is down, 1 is up
@@ -868,7 +869,7 @@ convert:
 	lds r18, Direction
 	in yl, SPL ;4bytes to store local variables
 	in yh, SPH ;assume variable is 1 byte
-	adiw y, 4
+	sbiw y, 4
 	out SPH, yh ;adjust stack pointer to poin to new stack top
 	out SPL, yl
 	std y+1, temp1 ;store initial parameters
@@ -886,7 +887,7 @@ convert:
 	sts Array_Size, r21 ;move returned number back to arraysize
 	in yl, SPL
 	in yh, SPH
-	sbiw y, 4
+	adiw y, 4
 	out SPH, yh
 	out SPL, yl
 	pop r24
