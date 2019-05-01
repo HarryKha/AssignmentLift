@@ -455,11 +455,7 @@ display10:
 updateFloor: ;updates the floor number and direction
 	push YL
 	push YH
-	push zl
-	push zh
-	ldi zl, low(vartab);compare current floor to next requested floor
-	ldi zh, high(vartab)
-	ld r17, z
+	lds r17, vartab
 	cpi r17, 0 ;empty request floor therefore do not move
 	brne requestexist
 	in YL, SPL
