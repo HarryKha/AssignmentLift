@@ -124,10 +124,9 @@ Check_Emergency:
 
 	cpi r16, 0 ;check if emergency mode has been activated
 		brne Emergency_Activated
-	push temp1
 	ldi temp1, 0
-	out PORTA, temp1
-	pop temp1
+	sts LED_State, temp1
+	cbi PORTA, 1
 
 Check_Emergency_End:
 	mov r24, r16
@@ -145,14 +144,14 @@ Emergency_Activated:
 ;=============================================
 ;	insert code for FLASHING LED here
 	lds temp1, LED_State
-	cpi temp1, 3
+	cpi temp1, 1
 		breq ledon
-	out PORTA, temp1
-	ldi temp1, 3
+	cbi PORTA, 1
+	ldi temp1, 1
 	sts LED_State, temp1
 	rjmp Emergency_Activated_continue
 ledon:
-	out PORTA, temp1
+	sbi PORTA, 1
 	ldi temp1, 0
 	sts LED_State, temp1
 	rjmp Emergency_Activated_continue
@@ -439,7 +438,6 @@ updateFloor: ;updates the floor number and direction
 	std Y+2, r25
 	ldd r16, Y+1 ;Floor number
 	ldd r17, Y+2 ;Direction
-
 	cpi r17, 1 ;compare direction, 1 = going up, 0 = going down
 		breq goingup
 	rjmp goingdown
@@ -719,7 +717,7 @@ start:
 	ldi temp1, 0
 	sts Emergency_Mode, temp1
 
-	ldi temp1, 3
+	ldi temp1, 1
 	sts LED_State, temp1
 
 	clr r23
@@ -900,11 +898,6 @@ star:
 zero:
 	ldi temp1, 0 ; Set to zero
 convert_end:
-
-;=============================================
-;	Need a debounce for '*' here
-;=============================================
-
 	sts Button_pressed, temp1
 	cpi temp1, '*'
 		breq toggleEmergency
