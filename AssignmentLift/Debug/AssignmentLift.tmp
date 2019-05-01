@@ -1,0 +1,125 @@
+<ASSEMBLER_INFO>
+ <VERSION>2.2.7</VERSION>
+ <DEVICE>"ATmega2560"</DEVICE>
+ <WORKING_DIR>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\Debug</WORKING_DIR>
+ <INCLUDE_PATH>
+  <DIR>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\avrasm\inc</DIR>
+  <DIR>C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avrassembler\Include</DIR>
+  <DIR></DIR>
+ </INCLUDE_PATH>
+ <SOURCE_FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</SOURCE_FILE>
+ <INCLUDED_FILES>
+  <FILE>C:/Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.2.209\avrasm\inc\m2560def.inc</FILE>
+ </INCLUDED_FILES>
+ <OBJECT_FILES>
+  <FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\Debug\AssignmentLift.obj</FILE>
+ </OBJECT_FILES>
+ <HEX_FILES>
+  <FILE>AssignmentLift.hex</FILE>
+ </HEX_FILES>
+ <OUTPUT_FILES>
+  <FILE>AssignmentLift.map</FILE>
+  <FILE>AssignmentLift.lss</FILE>
+ </OUTPUT_FILES>
+ <LABELS>
+  <vartab><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>58</LINE></vartab>
+  <Flashing><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>60</LINE></Flashing>
+  <FiveSecondCounter><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>62</LINE></FiveSecondCounter>
+  <TempCounter><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>64</LINE></TempCounter>
+  <SecondCounter><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>66</LINE></SecondCounter>
+  <FloorNumber><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>68</LINE></FloorNumber>
+  <Direction><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>70</LINE></Direction>
+  <NextFloor><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>72</LINE></NextFloor>
+  <Debounce><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>74</LINE></Debounce>
+  <Emergency_Mode><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>76</LINE></Emergency_Mode>
+  <Emergency_Floor><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>78</LINE></Emergency_Floor>
+  <Emergency_Direction><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>80</LINE></Emergency_Direction>
+  <Button_pressed><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>82</LINE></Button_pressed>
+  <LED_State><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>84</LINE></LED_State>
+  <Array_Size><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>86</LINE></Array_Size>
+  <RESET><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>104</LINE></RESET>
+  <EXT_INT0><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>1034</LINE></EXT_INT0>
+  <EXT_INT1><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>1051</LINE></EXT_INT1>
+  <OVF0address><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>199</LINE></OVF0address>
+  <number><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>100</LINE></number>
+  <insertflo><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>101</LINE></insertflo>
+  <main><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>492</LINE></main>
+  <Check_Emergency><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>111</LINE></Check_Emergency>
+  <Emergency_Activated><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>141</LINE></Emergency_Activated>
+  <Check_Emergency_End><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>131</LINE></Check_Emergency_End>
+  <ledon><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>153</LINE></ledon>
+  <Emergency_Activated_continue><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>158</LINE></Emergency_Activated_continue>
+  <lcd_command><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>971</LINE></lcd_command>
+  <lcd_wait><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>991</LINE></lcd_wait>
+  <sleep_5ms><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>1027</LINE></sleep_5ms>
+  <sleep_1ms><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>1015</LINE></sleep_1ms>
+  <lcd_data><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>980</LINE></lcd_data>
+  <NotSecond><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>256</LINE></NotSecond>
+  <TurnOn><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>288</LINE></TurnOn>
+  <FiveSecondPausee><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>258</LINE></FiveSecondPausee>
+  <NotSecond2><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>296</LINE></NotSecond2>
+  <updatingFloor><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>262</LINE></updatingFloor>
+  <NotSecond1><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>279</LINE></NotSecond1>
+  <FiveSecondPause><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>300</LINE></FiveSecondPause>
+  <updateFloor><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>455</LINE></updateFloor>
+  <endOVF0><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>334</LINE></endOVF0>
+  <display><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>375</LINE></display>
+  <Flash_LED><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>290</LINE></Flash_LED>
+  <TurnOn1><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>348</LINE></TurnOn1>
+  <OpenDoor><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>314</LINE></OpenDoor>
+  <wait><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>318</LINE></wait>
+  <CloseDoors><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>322</LINE></CloseDoors>
+  <FiveSecondEnd><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>352</LINE></FiveSecondEnd>
+  <FiveSecondPauseContinue><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>326</LINE></FiveSecondPauseContinue>
+  <start1><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>779</LINE></start1>
+  <movup><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>356</LINE></movup>
+  <finmovup><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>365</LINE></finmovup>
+  <display101><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>426</LINE></display101>
+  <display10><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>450</LINE></display10>
+  <goingup><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>471</LINE></goingup>
+  <goingdown><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>477</LINE></goingdown>
+  <updateFloor_end><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>483</LINE></updateFloor_end>
+  <proginsert><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>505</LINE></proginsert>
+  <begin><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>526</LINE></begin>
+  <insert_request><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>554</LINE></insert_request>
+  <repeat><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>530</LINE></repeat>
+  <start2><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>600</LINE></start2>
+  <firstno><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>657</LINE></firstno>
+  <exist><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>663</LINE></exist>
+  <greater><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>615</LINE></greater>
+  <lower><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>596</LINE></lower>
+  <dwn><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>603</LINE></dwn>
+  <start><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>680</LINE></start>
+  <smaller><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>631</LINE></smaller>
+  <endarray><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>650</LINE></endarray>
+  <up><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>619</LINE></up>
+  <movedwn><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>635</LINE></movedwn>
+  <fin><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>653</LINE></fin>
+  <endmov><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>646</LINE></endmov>
+  <loop><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>841</LINE></loop>
+  <floor9><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>818</LINE></floor9>
+  <floor10><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>810</LINE></floor10>
+  <turnOff><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>807</LINE></turnOff>
+  <leftshift><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>826</LINE></leftshift>
+  <end><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>833</LINE></end>
+  <colloop><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>844</LINE></colloop>
+  <delay><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>849</LINE></delay>
+  <nextcol><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>868</LINE></nextcol>
+  <rowloop><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>859</LINE></rowloop>
+  <convert><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>873</LINE></convert>
+  <letters><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>926</LINE></letters>
+  <symbols><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>930</LINE></symbols>
+  <convert_end><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>942</LINE></convert_end>
+  <star><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>937</LINE></star>
+  <zero><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>940</LINE></zero>
+  <toggleEmergency><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>947</LINE></toggleEmergency>
+  <halt><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>952</LINE></halt>
+  <lcd_wait_loop><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>997</LINE></lcd_wait_loop>
+  <delayloop_1ms><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>1020</LINE></delayloop_1ms>
+  <doNothing><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>1073</LINE></doNothing>
+  <CloseDoor><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>1078</LINE></CloseDoor>
+  <DEBOUNCE_BUTTON><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>1057</LINE></DEBOUNCE_BUTTON>
+  <PRESS_DOWN><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>1068</LINE></PRESS_DOWN>
+  <HoldDoor><FILE>c:\users\harry\Documents\Atmel Studio\7.0\AssignmentLift\AssignmentLift\main.asm</FILE><LINE>1085</LINE></HoldDoor>
+ </LABELS>
+</ASSEMBLER_INFO>

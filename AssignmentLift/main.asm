@@ -235,7 +235,10 @@ OVF0address: ;timer0 overflow
 		breq TurnOn
 
 	cp r24, r21 ;compare current floor with floor in the request
-		breq FiveSecondPause
+		breq FiveSecondPausee
+
+	ldi temp1, 0x00
+	sts OCR3BL, temp1
 
 	lds r24, SecondCounter
 	lds r25, SecondCounter + 1
@@ -244,9 +247,7 @@ OVF0address: ;timer0 overflow
 	ldi r20, high(2)
 	cpc r25, r20
 		brne NotSecond2
-
 	clear SecondCounter
-
 	lds r24, FloorNumber ;loading Floor number and direction into the stack 
 	lds r25, Direction
 	std Y+1, r24
@@ -254,6 +255,8 @@ OVF0address: ;timer0 overflow
 	rjmp updatingFloor
 NotSecond:
 	rjmp NotSecond1
+FiveSecondPausee:
+	rjmp FiveSecondPause
 
 
 updatingFloor:
@@ -295,9 +298,32 @@ NotSecond2:
 	sts SecondCounter + 1, r25
 	rjmp endOVF0
 FiveSecondPause:
-	lds r24, FiveSecondCounter ;Delay for 5 seconds
+	lds r24, FiveSecondCounter ;Delay for 4 seconds
+
+	cpi r24, 0
+		breq OpenDoor
+
+	cpi r24, 1
+		breq wait
+
+	cpi r24, 4
+		breq CloseDoors
 	cpi r24, 5
 		breq FiveSecondEnd
+	rjmp FiveSecondPauseContinue
+OpenDoor:
+	ldi temp1, 0xFF
+	sts OCR3BL, temp1
+	rjmp FiveSecondPauseContinue
+wait:
+	clr temp1
+	sts OCR3BL, temp1
+	rjmp FiveSecondPauseContinue
+CloseDoors:	
+	ldi temp1, 0x4A
+	sts OCR3BL, temp1
+	rjmp FiveSecondPauseContinue
+FiveSecondPauseContinue:
 	inc r24
 	sts FiveSecondCounter, r24
 	lds r24, FloorNumber ;turning off LEDs
@@ -324,6 +350,7 @@ TurnOn1:
 	sts FloorNumber, r24
 	rjmp endOVF0	
 FiveSecondEnd:
+
 	ldi xl, low(vartab)
 	ldi xh, high(vartab)
 	movup: ;deleting first number in array

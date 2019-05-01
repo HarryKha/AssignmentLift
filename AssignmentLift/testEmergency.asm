@@ -184,7 +184,7 @@ OVF0address: ;timer0 overflow
 	brne NotSecond 
 	clear TempCounter
 
-	;=============================================
+;============================================= CHECKING EMERGENCY MODE
 ;	insert code for '*' here
 	lds r24, Emergency
 	mov r25, r21
