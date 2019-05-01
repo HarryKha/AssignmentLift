@@ -880,7 +880,7 @@ convert:
 	push r23
 	push r24
 	lds r17, Array_Size
-	lds r19, FloorNumber ;loading Floor number and direction into the stack 
+	lds r19, NextFloor ;loading Floor number and direction into the stack 
 	lds r18, Direction
 	;prepare parameters for function call
 	mov r21, temp1 ; r21 holds the insert number parameter
